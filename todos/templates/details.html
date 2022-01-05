@@ -1,0 +1,27 @@
+{% include 'partials/header.html' %}
+
+<div class="row">
+    <div class="col-md">
+        <h3>{{todo.title}}</h3>
+    </div>
+</div>
+
+<div class="row card">
+    <div class="col-md card-body">
+        <p>{{todo.text}}</p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md datetime">
+        {{todo.created_at}}
+    </div>
+</div>
+
+
+<form action="{% url 'todos:delete' todo.id %}" method="post">
+    {% csrf_token %}
+    <a class='todos-edit btn btn-outline-secondary' href="{% url 'todos:update' todo.id %}">Edit</a>
+    <input class='todos-delete btn btn-danger' type="submit" value="Delete" />
+</form>
+
+{% include 'partials/footer.html' %}
